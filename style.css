@@ -6,3 +6,77 @@ Description: Blocksy Child Theme
 Author: Victor Hegelund
 Author URI: https://victorhegelund.dk
 */
+
+/* Mobilmenu */
+.mobil_nav {
+    background-color: #EDE8E4;
+    text-align: center;
+    height: 90px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.mobil_nav svg {
+    margin-top: -40px;
+}
+
+.mobil_menu {
+    background-color: #EDE8E4;
+    position: fixed;
+    left: 0;
+    bottom: 95px;
+    width: 100%;
+    padding: 15px 0 40px 0;
+}
+
+.mobil_menu a {
+    display: block;
+    text-align: center;
+    margin: 15px;
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+    font-family: sans-serif
+}
+
+.mobil_menu_left {
+    text-align: left;
+    margin-right: 22%;
+}
+
+.mobil_menu_right {
+    text-align: right;
+    margin-left: 22%;
+}
+
+.mobil_nav_nav {
+    position: fixed;
+    left: 0;
+    bottom: 50px;
+    width: 100%;
+}
+
+.mobil_nav_nav a {
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+    font-family: sans-serif
+}
+
+footer {
+    margin-bottom: 90px;
+    padding-bottom: 30px;
+}
+
+@media screen and (min-width: 1000px) {
+    .mobil_bar {
+        display: none !important;
+    }
+
+    footer {
+        margin-bottom: 0;
+    }
+}
