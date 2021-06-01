@@ -7,6 +7,34 @@ Author: Victor Hegelund
 Author URI: https://victorhegelund.dk
 */
 
+/* UX */
+.button {}
+
+.button:after {
+    content: "";
+    background-color: #9E4C30;
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: -30px;
+    top: 0;
+    width: 38px;
+    transform: skewX(20deg);
+}
+
+.button:hover:after {
+    background-color: #87391E;
+}
+
+.hexagon {
+    clip-path: polygon(26% 5%, 86% 21%, 100% 54%, 73% 95%, 11% 72%, 0 31%);
+}
+
+.two_columns {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 /* Mobilmenu */
 .mobil_nav {
     background-color: #EDE8E4;
@@ -71,6 +99,16 @@ footer {
     padding-bottom: 30px;
 }
 
+/* Tablet og op */
+@media screen and (min-width: 689.98px) {
+    .two_columns {
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 20px;
+        margin-bottom: 5vw;
+    }
+}
+
+/* Computer og op */
 @media screen and (min-width: 1000px) {
     .mobil_bar {
         display: none !important;

@@ -65,7 +65,7 @@ $post_content = ob_get_clean();
 
 		<?php do_action('blocksy:single:container:top'); ?>
 
-		<!-- VORES KODE I SKABELON -->
+        <!-- VORES KODE I SKABELON -->
 
 		<!-- VORES KODE SLUT I SKABELON -->
 
@@ -76,6 +76,7 @@ $post_content = ob_get_clean();
 			 */
 			echo blocksy_single_content($post_content);
 		?>
+
 
 
 		<?php get_sidebar(); ?>
@@ -89,4 +90,3 @@ blocksy_display_page_elements('separated');
 
 have_posts();
 wp_reset_query();
-

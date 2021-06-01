@@ -66,32 +66,47 @@ $post_content = ob_get_clean();
 		<?php do_action('blocksy:single:container:top'); ?>
 
 		<!-- VORES KODE I SKABELON -->
-
 		<style>
-		.cls-2{
-			fill:rgb(222,213,207,0.6);
-		}
+			.sekund_section{
+				background-color: #00464F;
+			}
 
-		.imgTestDiv{
+			.sekund_section p, .sekund_section h2, .sekund_section h3{
+				color: #fff;
+			}
 
-		}
+			.sekund_section h2{
+				text-align: center;
+			}
 
-		.imgTest{
-			width: 100%;
-			height: 100%;
-			/* object-fit: cover; */
-			clip-path: polygon(26% 5%, 86% 21%, 100% 54%, 73% 95%, 11% 72%, 0 31%);
-		}
 		</style>
-		<p>Tekst</p>
-		<div class="imgTestDiv">
-		<img class="imgTest" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/hest_1000x886.jpg" alt="">
-		</div>
 
-		<video class="imgTest video" controls poster="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/HestVideoCoverImg.png">
-			<source src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/videoTest.mp4" type="video/mp4">
-			Your browser does not support HTML video.
-		</video>
+		<article>
+			<section class="first_section">
+				<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/hest_1000x886.jpg" alt="Maria Knak fra Pædagogisk Rideterapi">
+				<h1>Pædagogisk Rideterapi</h1>
+				<p>hos Maria Knak</p>
+				<a href="#">Læs vores anmeldelser</a>
+			</section>
+
+			<section class="sekund_section">
+				<h2>Mine anmeldelser</h2>
+				<div class="two_columns">
+					<div class="anmeldelse_et">
+						<h3>Anmeldelse fra Hanne Olsen</h3>
+						<p>"Maria er utrolig rar og varm om hjertet, hun går til min datter i undervisningen, med et åbent sind og en stor respekt for min datters integritet.</p>
+						<p>Maria er god til at aflæse min datter, og får hende til at føle sig tryg - samtidig med at hun at hun bliver udfordret. Jeg kan varmt anbefale Maria"</p>
+						<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/Women.jpg" alt="Kvinde">
+					</div>
+					<div class="anmeldelse_to">
+					<h3>Anmeldelse fra Marianne Carlsen</h3>
+					<p>"Maria Knak og hendes heste er fantastiske - de har gjort alverden for vores datter  da hun startede lå hendes selvtillid på et meget lille sted - hun var usikker på sin krop og ballance, men hun er kommet rigtig rigtig langt, og hun udvikler sig stadig for hver gang hun kommer. Vi kan kun give Pædagogisk Ridning vores klare anbefaling"</p>
+					<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/Women.jpg" alt="Kvinde">
+					</div>
+				</div>
+			</section>
+
+		</article>
 		<!-- VORES KODE SLUT I SKABELON -->
 
 		<?php
