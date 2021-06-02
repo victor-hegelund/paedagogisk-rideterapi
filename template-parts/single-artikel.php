@@ -68,24 +68,48 @@ $post_content = ob_get_clean();
         <!-- VORES KODE I SKABELON -->
 
         <style>
+
+            .relateret_artikler_loop{
+                display: flex;
+                gap: 20px;
+                overflow-x: scroll;
+                min-width: 100%;
+            }
+
+            .relateret_artikel{
+                min-width: 75%;
+            }
+
+            /* Tablet og op */
+            @media screen and (min-width: 689.98px) {
+                .top_section .cover_billede{
+                    float: right;
+                    width: 50%;
+                    margin-top: -87px ;
+                }
+                .relateret_artikel{
+                    min-width: 300px;
+                }
+            }
         </style>
 
         <article>
             <div class="top_section">
                 <h1></h1>
-                <img class="cover_billede" src="" alt="">
+                <img class="cover_billede hexagon" src="" alt="">
             </div>
             <section class="main_section"></section>
-        </article>
+
         <div class="relateret_artikler">
             <h2></h2>
             <div class="relateret_artikler_loop"></div>
         </div>
+        </article>
 
 
         <template>
                 <div class="relateret_artikel">
-                    <img class="relateret_artikel_img" src="" alt="">
+                    <img class="relateret_artikel_img hexagon" src="" alt="">
                     <h3 class="relateret_artikel_overskrift"></h3>
                     <p class="relateret_artikel_dato"></p>
                 </div>

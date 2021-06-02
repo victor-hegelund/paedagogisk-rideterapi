@@ -8,8 +8,6 @@ Author URI: https://victorhegelund.dk
 */
 
 /* UX */
-.button {}
-
 .button:after {
     content: "";
     background-color: #9E4C30;
@@ -20,10 +18,13 @@ Author URI: https://victorhegelund.dk
     top: 0;
     width: 38px;
     transform: skewX(20deg);
+    transition: all 0.2s ease;
 }
 
 .button:hover:after {
     background-color: #87391E;
+    transition: all 0.2s ease;
+
 }
 
 .hexagon {
@@ -35,6 +36,10 @@ Author URI: https://victorhegelund.dk
     grid-template-columns: 1fr;
 }
 
+h3 {
+    color: #87391E !important;
+}
+
 /* Mobilmenu */
 .mobil_nav {
     background-color: #EDE8E4;
@@ -44,7 +49,7 @@ Author URI: https://victorhegelund.dk
     left: 0;
     bottom: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 10000;
 }
 
 .mobil_nav svg {
@@ -58,6 +63,7 @@ Author URI: https://victorhegelund.dk
     bottom: 95px;
     width: 100%;
     padding: 15px 0 40px 0;
+    z-index: 9999;
 }
 
 .mobil_menu a {
@@ -99,11 +105,23 @@ footer {
     padding-bottom: 30px;
 }
 
+.skabelon {
+    --has-background: var(--has-boxed);
+    --has-boxed-structure: var(--has-boxed);
+    box-shadow: var(--has-boxed, var(--box-shadow));
+    border-radius: var(--has-boxed, var(--border-radius));
+    padding: var(--has-boxed, var(--boxed-content-spacing));
+    margin-left: var(--has-boxed-structure, auto);
+    margin-right: var(--has-boxed-structure, auto);
+    width: var(--has-boxed-structure, var(--container-width));
+    max-width: var(--has-boxed-structure, var(--boxed-content-max-width));
+}
+
 /* Tablet og op */
 @media screen and (min-width: 689.98px) {
     .two_columns {
         grid-template-columns: 1fr 1fr;
-        grid-column-gap: 20px;
+        grid-column-gap: 50px;
         margin-bottom: 5vw;
     }
 }

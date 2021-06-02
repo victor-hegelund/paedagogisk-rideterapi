@@ -55,6 +55,127 @@ $post_content = ob_get_clean();
 
 ?>
 	<!-- VORES KODE UDENFOR SKABELON -->
+		<style>
+
+			.mobil_video{
+				display: block;
+			}
+
+			.mobil_video_tekst{
+				text-align: center;
+			}
+
+			.desktop_video{
+				display: none;
+			}
+
+			.velkommen img{
+					margin-top: -18px;
+			}
+
+			.anmeldelse{
+				display: block;
+			}
+
+			.anmeldelser_section{
+				background-color: #EDE8E4;
+				margin-bottom: -50px;
+				margin-top: 60px;
+				padding-top: 60px;
+			}
+
+			.anmeldelser_section h2{
+				text-align: center;
+			}
+
+			@media screen and (min-width: 689.98px) {
+				.anmeldelser_section{
+					margin-bottom: -107px;
+				}
+			}
+
+			@media screen and (min-width: 1000px) {
+				.mobil_video{
+					display: none;
+				}
+				.desktop_video{
+					display: block;
+					height: calc(100vh - 120px) !important;
+					position: relative;
+				}
+				.desktop_video video{
+					object-fit: cover;
+					width: 100%;
+					height: calc(100vh - 120px) !important;
+				}
+
+				.desktop_video svg{
+					position: absolute;
+					width: 60%;
+					height: auto;
+					max-height: 70%;
+					display: block;
+					margin: 0 auto;
+					max-height: calc(100vh - 120px) !important;
+					bottom: 0px;
+
+					left: 0;
+					right: 0;
+					margin-left: auto;
+					margin-right: auto;
+				}
+
+				.disktop_video_tekst{
+					position: absolute;
+					width: 45%;
+					left: 0;
+					right: 0;
+					margin-left: auto;
+					margin-right: auto;
+					bottom: 0px;
+					text-align: center;
+				}
+
+				.anmeldelser_section{
+					margin-bottom: -124px;-107px
+				}
+
+				.two_columns {
+
+				}
+
+
+			}
+
+		</style>
+
+
+		<div class="mobil_video skabelon">
+			<video class="hexagon" style="opacity:1;" data-mode="fill" playsinline="playsinline" webkit-playsinline="webkit-playsinline" onloadstart="this.n2LoadStarted=1;" data-keepplaying="1" preload="metadata" muted="muted" loop="loop" data-reset-slide-change="1" autoplay loop>
+				<source src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/front-mobil.mp4" type="video/mp4">
+			</video>
+			<div class="mobil_video_tekst">
+				<h1>Velkommen til</br>Pædagogisk Rideterapi</h1>
+				<p>hos Maria Knak</p>
+				<a href="#anmeldelser">Læs vores anmeldelser</a>
+			</div>
+		</div>
+
+
+		<div class="desktop_video">
+			<video class="" style="opacity:1;" data-mode="fill" playsinline="playsinline" webkit-playsinline="webkit-playsinline" onloadstart="this.n2LoadStarted=1;" data-keepplaying="1" preload="metadata" muted="muted" loop="loop" data-reset-slide-change="1" autoplay loop>
+				<source src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/front-desktop.mp4" type="video/mp4">
+			</video>
+			<svg xmlns="http://www.w3.org/2000/svg" width="1127.64" height="474.36" viewBox="0 0 1127.64 474.36">
+				<path id="Path_161" data-name="Path 161" d="M1127.64,474.36H47.22L0,298.42,306.3,0l702.94,188.47Z" fill="#eae5e1" opacity="0.9"/>
+			</svg>
+			<div class="disktop_video_tekst">
+				<h1>Velkommen til</br>Pædagogisk Rideterapi</h1>
+				<p>hos Maria Knak</p>
+				<a href="#anmeldelser">Læs vores anmeldelser</a>
+			</div>
+		</div>
+
 
 	<!-- VORES KODE SLUT UDENFOR SKABELON -->
 	<div
@@ -66,47 +187,38 @@ $post_content = ob_get_clean();
 		<?php do_action('blocksy:single:container:top'); ?>
 
 		<!-- VORES KODE I SKABELON -->
-		<style>
-			.sekund_section{
-				background-color: #00464F;
-			}
-
-			.sekund_section p, .sekund_section h2, .sekund_section h3{
-				color: #fff;
-			}
-
-			.sekund_section h2{
-				text-align: center;
-			}
-
-		</style>
-
 		<article>
-			<section class="first_section">
-				<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/hest_1000x886.jpg" alt="Maria Knak fra Pædagogisk Rideterapi">
-				<h1>Pædagogisk Rideterapi</h1>
-				<p>hos Maria Knak</p>
-				<a href="#">Læs vores anmeldelser</a>
-			</section>
+			<div class="velkommen two_columns">
+				<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/IMG_0125.jpg" alt="">
+				<div class="velkommen_tekst">
+					<h2>Velkommen til min gård</h2>
+					<p>"Maria er utrolig rar og varm om hjertet, hun går til min datter i undervisningen, med et åbent sind og en stor respekt for min datters integritet. Maria er god til at aflæse min datter, og får hende til at føle sig tryg - samtidig med at hun at hun bliver udfordret. Jeg kan varmt anbefale Maria"</p>
+					<a class="button" href="/kea/10_eksamen/pædagogisk-rideterapi/hvem-er-jeg">Læs mere</a>
+				</div>
+			</div>
+		</article>
 
-			<section class="sekund_section">
+
+		<section class="anmeldelser_section" id="anmeldelser">
+			<div class="skabelon">
 				<h2>Mine anmeldelser</h2>
 				<div class="two_columns">
-					<div class="anmeldelse_et">
+					<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/Women.jpg" alt="Kvinde">
+					<div class="anmeldelse">
 						<h3>Anmeldelse fra Hanne Olsen</h3>
 						<p>"Maria er utrolig rar og varm om hjertet, hun går til min datter i undervisningen, med et åbent sind og en stor respekt for min datters integritet.</p>
 						<p>Maria er god til at aflæse min datter, og får hende til at føle sig tryg - samtidig med at hun at hun bliver udfordret. Jeg kan varmt anbefale Maria"</p>
-						<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/Women.jpg" alt="Kvinde">
 					</div>
-					<div class="anmeldelse_to">
-					<h3>Anmeldelse fra Marianne Carlsen</h3>
-					<p>"Maria Knak og hendes heste er fantastiske - de har gjort alverden for vores datter  da hun startede lå hendes selvtillid på et meget lille sted - hun var usikker på sin krop og ballance, men hun er kommet rigtig rigtig langt, og hun udvikler sig stadig for hver gang hun kommer. Vi kan kun give Pædagogisk Ridning vores klare anbefaling"</p>
 					<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/Women.jpg" alt="Kvinde">
+					<div class="anmeldelse">
+						<h3>Anmeldelse fra Marianne Carlsen</h3>
+						<p>"Maria Knak og hendes heste er fantastiske - de har gjort alverden for vores datter  da hun startede lå hendes selvtillid på et meget lille sted - hun var usikker på sin krop og ballance, men hun er kommet rigtig rigtig langt, og hun udvikler sig stadig for hver gang hun kommer. Vi kan kun give Pædagogisk Ridning vores klare anbefaling"</p>
 					</div>
 				</div>
-			</section>
+			</div>
+		</section>
 
-		</article>
+
 		<!-- VORES KODE SLUT I SKABELON -->
 
 		<?php

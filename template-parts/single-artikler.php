@@ -66,20 +66,32 @@ $post_content = ob_get_clean();
 		<?php do_action('blocksy:single:container:top'); ?>
 
         <!-- VORES KODE I SKABELON -->
-        <div id="primary" class="content-area">
+        <style>
+            .img svg {
+
+            }
+            .img img {
+
+                width: 100%;
+            }
+        </style>
+        <article id="primary" class="content-area">
           <h1>Artikler</h1>
           <div class="custom-select">
             <select id="filtrering">
                 <option value="alle">Alle</option>
             </select>
           </div>
-          <section id="liste"></section>
-    </div><!-- #primary -->
+          <section id="liste" class="two_columns"></section>
+        </article><!-- #primary -->
     <template>
         <article>
             <div class="img">
-                <img class="imgImg" src="" alt="">
+                <img class="imgImg hexagon" src="" alt="">
             </div>
+            <h2 class="overskrift"></h2>
+            <p class="dato"></p>
+
             <a class="button">Læs mere</a>
         </article>
     </template>
@@ -142,6 +154,9 @@ $post_content = ob_get_clean();
             console.log("featured_image: " + artikel.cover_billede.guid);
             klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
             klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
+            klon.querySelector(".overskrift").textContent = artikel.title.rendered;
+            klon.querySelector(".overskrift").addEventListener("click", () => visDetaljer(artikel))
+            klon.querySelector(".dato").textContent = artikel.date;
             klon.querySelector(".button").addEventListener("click", () => visDetaljer(artikel))
             dest.appendChild(klon);
             }

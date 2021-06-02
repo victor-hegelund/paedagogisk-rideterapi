@@ -35,8 +35,8 @@ do_action('blocksy:content:bottom');
 	<div class="mobil_nav">
 
 		<nav class="mobil_nav_nav">
-			<a class="mobil_menu_left" href="#">Jeg tilbyder</a>
-			<a class="mobil_menu_right" href="#">Rideterapi</a>
+			<a class="mobil_menu_left" href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/jeg-tilbyder">Jeg tilbyder</a>
+			<a class="mobil_menu_right" href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/hvad-er-rideterapi">Rideterapi</a>
 		</nav>
 
 		<div class="mobil_menu_knap">
@@ -75,10 +75,10 @@ do_action('blocksy:content:bottom');
 		</div>
 	</div>
 	<nav class="mobil_menu hidden">
-		<a href="#">Knap 1</a>
-		<a href="#">Knap 2</a>
-		<a href="#">Knap 3</a>
-		<a href="#">Knap 4</a>
+		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/hvem-er-jeg">Hvem er jeg</a>
+		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/praktisk-info">Praktisk info</a>
+		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/artikler">Artikler</a>
+		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/kontakt">Kontakt</a>
 	</nav>
 
 </div>
