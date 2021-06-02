@@ -162,7 +162,7 @@ $post_content = ob_get_clean();
                 klon.querySelector(".relateret_artikel_img").addEventListener("click", () => visDetaljer(artiklen))
                 klon.querySelector(".relateret_artikel_overskrift").textContent = artiklen.title.rendered;
                 klon.querySelector(".relateret_artikel_overskrift").addEventListener("click", () => visDetaljer(artiklen))
-                klon.querySelector(".relateret_artikel_dato").textContent = artiklen.date;
+                klon.querySelector(".relateret_artikel_dato").textContent = artiklen.dato;
                 dest.appendChild(klon);
 
         })

@@ -137,7 +137,7 @@ $post_content = ob_get_clean();
 				}
 
 				.anmeldelser_section{
-					margin-bottom: -124px;-107px
+					margin-bottom: -124px;
 				}
 
 				.two_columns {

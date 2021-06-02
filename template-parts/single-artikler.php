@@ -74,13 +74,22 @@ $post_content = ob_get_clean();
 
                 width: 100%;
             }
+
+            #filtrering button{
+                margin: 5px 30px;
+            }
+
+            .imgImg, .overskrift{
+                cursor: pointer;
+            }
+
         </style>
         <article id="primary" class="content-area">
           <h1>Artikler</h1>
           <div class="custom-select">
-            <select id="filtrering">
-                <option value="alle">Alle</option>
-            </select>
+            <nav id="filtrering">
+                <button class="button valgt" data-kategori="alle">Alle</button>
+            </nav>
           </div>
           <section id="liste" class="two_columns"></section>
         </article><!-- #primary -->
@@ -91,74 +100,61 @@ $post_content = ob_get_clean();
             </div>
             <h2 class="overskrift"></h2>
             <p class="dato"></p>
-
             <a class="button">Læs mere</a>
         </article>
     </template>
 
-    <script>
-    const header = document.querySelector("header h2");
-
-    document.addEventListener("DOMContentLoaded", start)
-    let artikler;
-    let categories;
-    let filterArtikel = "alle";
-
-    // første funktion der kaldes efter DOM er loaded
-    function start() {
-        const filterKnapper = document.querySelectorAll("select option");
-        loadJSON();
-    }
+<script>
+    let filter = "alle";
+    document.addEventListener("DOMContentLoaded", loadJSON)
 
     async function loadJSON() {
-        const JSONData = await fetch("https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
-        const catJSONData = await fetch("https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
+        console.log("loadJSON");
+        const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
+        const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
         artikler = await JSONData.json();
-        console.log(artikler);
+        console.log("Artikler", artikler);
         categories = await catJSONData.json();
-        console.log("categories", categories);
-        visArtikler();
+        console.log("Categories", categories);
         opretKnapper();
     }
 
     function opretKnapper(){
-    categories.forEach(cat =>{
-        document.querySelector("#filtrering").innerHTML += `<option class="filter" value="${cat.id}">${cat.name}</option>`
-
-    })
-
-    addEventListenerToButtons();
+        console.log("opretKnapper");
+        categories.forEach(cat =>{
+            document.querySelector("#filtrering").innerHTML += `<button class="button" data-kategori="${cat.id}">${cat.name}</button>`
+        })
+        const filterKnapper = document.querySelectorAll("nav button");
+        filterKnapper.forEach(knap => knap.addEventListener("click", filterKategori));
+        visArtikler();
     }
 
-    function addEventListenerToButtons(){
-        console.log("addEventListenerToButtons");
-        document.querySelector("#filtrering").addEventListener("change", (event) => {
-        console.log(event.target.value);
-        filterArtikel = event.target.value;
+    function filterKategori() {
+        console.log("filterKategori");
+        filter = this.dataset.kategori;
+        document.querySelector(".valgt").classList.remove("valgt")
+        this.classList.add("valgt");
         visArtikler();
-        });
-    };
+    }
 
-    //funktion der viser podcasts i liste view
     function visArtikler() {
         console.log("visArtikler");
-
-        const dest = document.querySelector("#liste"); // container til articles med en podcast
-        const template = document.querySelector("template").content; // select indhold af html skabelon (article)
+        const dest = document.querySelector("#liste");
+        const template = document.querySelector("template").content;
         dest.textContent = "";
         artikler.forEach(artikel => {
-            console.log("artikel categories: " + artikel.artikel_kategori.name);
-            console.log(filterArtikel)
-            if ( filterArtikel == "alle" || artikel.artikel_kategori.includes(parseInt(filterArtikel))){
-            const klon = template.cloneNode(true);
-            console.log("featured_image: " + artikel.cover_billede.guid);
-            klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
-            klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
-            klon.querySelector(".overskrift").textContent = artikel.title.rendered;
-            klon.querySelector(".overskrift").addEventListener("click", () => visDetaljer(artikel))
-            klon.querySelector(".dato").textContent = artikel.date;
-            klon.querySelector(".button").addEventListener("click", () => visDetaljer(artikel))
-            dest.appendChild(klon);
+            console.log("artikel categories: " + artikel.artikel_kategori);
+            console.log(filter)
+            if ( filter == "alle" || filter == artikel.artikel_kategori){
+                const klon = template.cloneNode(true);
+                console.log("featured_image: " + artikel.cover_billede.guid);
+                klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
+                klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
+                klon.querySelector(".overskrift").textContent = artikel.title.rendered;
+                klon.querySelector(".overskrift").addEventListener("click", () => visDetaljer(artikel))
+                klon.querySelector(".dato").textContent = artikel.dato;
+                klon.querySelector(".button").addEventListener("click", () => visDetaljer(artikel))
+                dest.appendChild(klon);
             }
         })
     }
@@ -167,7 +163,7 @@ $post_content = ob_get_clean();
         location.href = artikel.link;
     }
 
-    </script>
+</script>
 		<!-- VORES KODE SLUT I SKABELON -->
 
 		<?php
