@@ -100,10 +100,10 @@ $post_content = ob_get_clean();
             </div>
             <section class="main_section"></section>
 
-        <div class="relateret_artikler">
-            <h2></h2>
-            <div class="relateret_artikler_loop"></div>
-        </div>
+            <div class="relateret_artikler">
+                <h2></h2>
+                <div class="relateret_artikler_loop"></div>
+            </div>
         </article>
 
 
@@ -113,70 +113,54 @@ $post_content = ob_get_clean();
                     <h3 class="relateret_artikel_overskrift"></h3>
                     <p class="relateret_artikel_dato"></p>
                 </div>
-
-
         </template>
 
         <script>
-        let artikel;
-        let aktuelArtikel = "<?php echo get_the_ID() ?>";
-        console.log("ID: " + aktuelArtikel);
-        document.addEventListener("DOMContentLoaded", loadJSON)
+            let artikel;
+            let aktuelArtikel = "<?php echo get_the_ID() ?>";
 
-        async function loadJSON() {
-            console.log("loadJSON");
-            const JSONData = await fetch("https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel/" + aktuelArtikel);
-            console.log(JSONData);
-            artikel = await JSONData.json();
-            console.log("artikel");
-            console.log("artikel: ", artikel);
+            document.addEventListener("DOMContentLoaded", loadJSON)
 
+            async function loadJSON() {
+                console.log("loadJSON");
+                const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel/" + aktuelArtikel);
+                artikel = await JSONData.json();
+                console.log("artikel: ", artikel);
 
-            const JSONData2 = await fetch("https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
-            artikler = await JSONData2.json();
+                const JSONData2 = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
+                artikler = await JSONData2.json();
 
-            console.log("Episoder:", artikler);
-            visArtikel();
-            visArtikler();
+                console.log("artikler:", artikler);
+                visArtikel();
+            }
+
+            function visArtikel() {
+                console.log("visArtikel");
+                document.querySelector(".cover_billede").src = artikel.cover_billede.guid;
+                document.querySelector("h1").textContent = artikel.title.rendered;
+                document.querySelector(".main_section").innerHTML = artikel.content.rendered;
+                visArtikler();
+            }
+
+            function visArtikler() {
+            console.log("visArtikler");
+
+            const dest = document.querySelector(".relateret_artikler_loop");
+            const template = document.querySelector("template").content;
+            dest.textContent = "";
+            artikler.forEach(artiklen => {
+                    const klon = template.cloneNode(true);
+                    klon.querySelector(".relateret_artikel_img").src = artiklen.cover_billede.guid;
+                    klon.querySelector(".relateret_artikel_img").addEventListener("click", () => visDetaljer(artiklen))
+                    klon.querySelector(".relateret_artikel_overskrift").textContent = artiklen.title.rendered;
+                    klon.querySelector(".relateret_artikel_overskrift").addEventListener("click", () => visDetaljer(artiklen))
+                    klon.querySelector(".relateret_artikel_dato").textContent = artiklen.dato;
+                    dest.appendChild(klon);
+            })
         }
-
-        function visArtikel() {
-            document.querySelector(".cover_billede").src = artikel.cover_billede.guid;
-            document.querySelector("h1").textContent = artikel.title.rendered;
-            document.querySelector(".main_section").innerHTML = artikel.content.rendered;
-        }
-
-        function visArtikler() {
-        console.log("visArtikler");
-
-        const dest = document.querySelector(".relateret_artikler_loop");
-        const template = document.querySelector("template").content;
-        dest.textContent = "";
-        console.log("Her til!");
-        artikler.forEach(artiklen => {
-            console.log("artiklen: " + artiklen);
-
-                console.log(artiklen);
-                const klon = template.cloneNode(true);
-                klon.querySelector(".relateret_artikel_img").src = artiklen.cover_billede.guid;
-                klon.querySelector(".relateret_artikel_img").addEventListener("click", () => visDetaljer(artiklen))
-                klon.querySelector(".relateret_artikel_overskrift").textContent = artiklen.title.rendered;
-                klon.querySelector(".relateret_artikel_overskrift").addEventListener("click", () => visDetaljer(artiklen))
-                klon.querySelector(".relateret_artikel_dato").textContent = artiklen.dato;
-                dest.appendChild(klon);
-
-        })
-
-    }
-
-    function visDetaljer(artiklen) {
-        location.href = artiklen.link;
-    }
-
-    </script>
+        </script>
 
 
-	</div><!-- #primary -->
 		<!-- VORES KODE SLUT I SKABELON -->
 
 

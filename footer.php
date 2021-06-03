@@ -75,10 +75,9 @@ do_action('blocksy:content:bottom');
 		</div>
 	</div>
 	<nav class="mobil_menu hidden">
-		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/hvem-er-jeg">Hvem er jeg</a>
-		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/praktisk-info">Praktisk info</a>
+		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/hvem-er-jeg">Om mig</a>
 		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/artikler">Artikler</a>
-		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/kontakt">Kontakt</a>
+		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/kontakt">Kontakt & booking</a>
 	</nav>
 
 </div>
