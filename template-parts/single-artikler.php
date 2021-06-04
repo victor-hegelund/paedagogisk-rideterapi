@@ -54,66 +54,62 @@ the_content(
 $post_content = ob_get_clean();
 
 ?>
-	<!-- VORES KODE UDENFOR SKABELON -->
+<!-- VORES KODE UDENFOR SKABELON -->
 
-	<!-- VORES KODE SLUT UDENFOR SKABELON -->
-	<div
-		class="<?php echo trim($container_class) ?>"
-		<?php echo wp_kses_post(blocksy_sidebar_position_attr()); ?>
-		<?php echo $data_container_output; ?>
-		<?php echo blocksy_get_v_spacing() ?>>
+<!-- VORES KODE SLUT UDENFOR SKABELON -->
+<div class="<?php echo trim($container_class) ?>" <?php echo wp_kses_post(blocksy_sidebar_position_attr()); ?> <?php echo $data_container_output; ?> <?php echo blocksy_get_v_spacing() ?>>
 
-		<?php do_action('blocksy:single:container:top'); ?>
+    <?php do_action('blocksy:single:container:top'); ?>
 
-        <!-- VORES KODE I SKABELON -->
-        <style>
-            .img svg {
+    <!-- VORES KODE I SKABELON -->
+    <style>
+        .img svg {}
 
-            }
-            .img img {
+        .img img {
 
-                width: 100%;
-            }
+            width: 100%;
+        }
 
-            #filtrering button{
-                margin-top: 5px;
-                margin-bottom: 5px;
-                margin-left: 0;
-                margin-right: 50px;
-            }
+        #filtrering button {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-left: 0;
+            margin-right: 50px;
+        }
 
-            .imgImg, .overskrift{
-                cursor: pointer;
-            }
+        .imgImg,
+        .overskrift {
+            cursor: pointer;
+        }
 
-            .overskrift{
-                margin-top: -20px;
-            }
+        .overskrift {
+            margin-top: -20px;
+        }
 
-            .two_columns{
-                row-gap: 30px;
-            }
+        .three_columns {
+            row-gap: 30px;
+        }
 
-            .valgt{
-                background-color: #00464F !important;
-            }
+        .valgt {
+            background-color: #00464F !important;
+        }
 
-            .valgt:after {
-                background-color: #00464F !important;
-            }
+        .valgt:after {
+            background-color: #00464F !important;
+        }
 
-        </style>
+    </style>
 
-        <article id="primary" class="content-area">
-          <h1>Mine artikler</h1>
-          <p>Her finder du artikler, som jeg har skrevet. Jeg skriver om hvordan det går på min gård samt den nyeste viden indenfor rideterapi. God læselyst!</p>
-          <div class="custom-select">
+    <article id="primary" class="content-area">
+        <h1>Mine artikler</h1>
+        <p>Her finder du artikler, som jeg har skrevet. Jeg skriver om hvordan det går på min gård samt den nyeste viden indenfor rideterapi. God læselyst!</p>
+        <div class="custom-select">
             <nav id="filtrering">
                 <button class="button valgt" data-kategori="alle">Alle</button>
             </nav>
-          </div>
-          <section id="liste" class="two_columns"></section>
-        </article><!-- #primary -->
+        </div>
+        <section id="liste" class="three_columns"></section>
+    </article><!-- #primary -->
     <template>
         <article>
             <div class="img">
@@ -125,69 +121,69 @@ $post_content = ob_get_clean();
         </article>
     </template>
 
-<script>
-    let filter = "alle";
-    document.addEventListener("DOMContentLoaded", loadJSON)
+    <script>
+        let filter = "alle";
+        document.addEventListener("DOMContentLoaded", loadJSON)
 
-    async function loadJSON() {
-        console.log("loadJSON");
-        const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
-        const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
-        artikler = await JSONData.json();
-        console.log("Artikler", artikler);
-        categories = await catJSONData.json();
-        console.log("Categories", categories);
-        opretKnapper();
-    }
+        async function loadJSON() {
+            console.log("loadJSON");
+            const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
+            const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
+            artikler = await JSONData.json();
+            console.log("Artikler", artikler);
+            categories = await catJSONData.json();
+            console.log("Categories", categories);
+            opretKnapper();
+        }
 
-    function opretKnapper(){
-        console.log("opretKnapper");
-        categories.forEach(cat =>{
-            document.querySelector("#filtrering").innerHTML += `<button class="button" data-kategori="${cat.id}">${cat.name}</button>`
-        })
-        const filterKnapper = document.querySelectorAll("nav button");
-        filterKnapper.forEach(knap => knap.addEventListener("click", filterKategori));
-        visArtikler();
-    }
+        function opretKnapper() {
+            console.log("opretKnapper");
+            categories.forEach(cat => {
+                document.querySelector("#filtrering").innerHTML += `<button class="button" data-kategori="${cat.id}">${cat.name}</button>`
+            })
+            const filterKnapper = document.querySelectorAll("nav button");
+            filterKnapper.forEach(knap => knap.addEventListener("click", filterKategori));
+            visArtikler();
+        }
 
-    function filterKategori() {
-        console.log("filterKategori");
-        filter = this.dataset.kategori;
-        document.querySelector(".valgt").classList.remove("valgt")
-        this.classList.add("valgt");
-        visArtikler();
-    }
+        function filterKategori() {
+            console.log("filterKategori");
+            filter = this.dataset.kategori;
+            document.querySelector(".valgt").classList.remove("valgt")
+            this.classList.add("valgt");
+            visArtikler();
+        }
 
-    function visArtikler() {
-        console.log("visArtikler");
-        const dest = document.querySelector("#liste");
-        const template = document.querySelector("template").content;
-        dest.textContent = "";
-        artikler.forEach(artikel => {
-            console.log("artikel categories: " + artikel.artikel_kategori);
-            console.log(filter)
-            if ( filter == "alle" || filter == artikel.artikel_kategori){
-                const klon = template.cloneNode(true);
-                console.log("featured_image: " + artikel.cover_billede.guid);
-                klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
-                klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
-                klon.querySelector(".overskrift").textContent = artikel.title.rendered;
-                klon.querySelector(".overskrift").addEventListener("click", () => visDetaljer(artikel))
-                klon.querySelector(".dato").textContent = artikel.dato;
-                klon.querySelector(".button").addEventListener("click", () => visDetaljer(artikel))
-                dest.appendChild(klon);
-            }
-        })
-    }
+        function visArtikler() {
+            console.log("visArtikler");
+            const dest = document.querySelector("#liste");
+            const template = document.querySelector("template").content;
+            dest.textContent = "";
+            artikler.forEach(artikel => {
+                console.log("artikel categories: " + artikel.artikel_kategori);
+                console.log(filter)
+                if (filter == "alle" || filter == artikel.artikel_kategori) {
+                    const klon = template.cloneNode(true);
+                    console.log("featured_image: " + artikel.cover_billede.guid);
+                    klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
+                    klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
+                    klon.querySelector(".overskrift").textContent = artikel.title.rendered;
+                    klon.querySelector(".overskrift").addEventListener("click", () => visDetaljer(artikel))
+                    klon.querySelector(".dato").textContent = artikel.dato;
+                    klon.querySelector(".button").addEventListener("click", () => visDetaljer(artikel))
+                    dest.appendChild(klon);
+                }
+            })
+        }
 
-    function visDetaljer(artikel) {
-        location.href = artikel.link;
-    }
+        function visDetaljer(artikel) {
+            location.href = artikel.link;
+        }
 
-</script>
-		<!-- VORES KODE SLUT I SKABELON -->
+    </script>
+    <!-- VORES KODE SLUT I SKABELON -->
 
-		<?php
+    <?php
 			/**
 			 * Note to code reviewers: This line doesn't need to be escaped.
 			 * Function blocksy_single_content() used here escapes the value properly.
@@ -197,10 +193,10 @@ $post_content = ob_get_clean();
 
 
 
-		<?php get_sidebar(); ?>
+    <?php get_sidebar(); ?>
 
-		<?php do_action('blocksy:single:container:bottom'); ?>
-	</div>
+    <?php do_action('blocksy:single:container:bottom'); ?>
+</div>
 
 <?php
 
@@ -208,4 +204,3 @@ blocksy_display_page_elements('separated');
 
 have_posts();
 wp_reset_query();
-

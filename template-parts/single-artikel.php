@@ -54,131 +54,142 @@ the_content(
 $post_content = ob_get_clean();
 
 ?>
-	<!-- VORES KODE UDENFOR SKABELON -->
+<!-- VORES KODE UDENFOR SKABELON -->
 
-	<!-- VORES KODE SLUT UDENFOR SKABELON -->
-	<div
-		class="<?php echo trim($container_class) ?>"
-		<?php echo wp_kses_post(blocksy_sidebar_position_attr()); ?>
-		<?php echo $data_container_output; ?>
-		<?php echo blocksy_get_v_spacing() ?>>
+<!-- VORES KODE SLUT UDENFOR SKABELON -->
+<div class="<?php echo trim($container_class) ?>" <?php echo wp_kses_post(blocksy_sidebar_position_attr()); ?> <?php echo $data_container_output; ?> <?php echo blocksy_get_v_spacing() ?>>
 
-		<?php do_action('blocksy:single:container:top'); ?>
+    <?php do_action('blocksy:single:container:top'); ?>
 
-        <!-- VORES KODE I SKABELON -->
+    <!-- VORES KODE I SKABELON -->
 
-        <style>
+    <style>
+        .relateret_artikler_loop {
+            display: flex;
+            gap: 20px;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
 
-            .relateret_artikler_loop{
-                display: flex;
-                gap: 20px;
-                overflow-x: scroll;
-                min-width: 100%;
+        .relateret_artikel {
+            min-width: 75%;
+        }
+
+        /* Tablet og op */
+        @media screen and (min-width: 689.98px) {
+            .top_section .cover_billede {
+                float: right;
+                width: 50%;
+                margin-top: -18px;
+                margin-left: 30px;
             }
 
-            .relateret_artikel{
-                min-width: 75%;
+            .relateret_artikel {
+                min-width: 300px;
             }
 
-            /* Tablet og op */
-            @media screen and (min-width: 689.98px) {
-                .top_section .cover_billede{
-                    float: right;
-                    width: 50%;
-                    margin-top: -18px ;
-                    margin-left: 30px;
-                }
-                .relateret_artikel{
-                    min-width: 300px;
-                }
-                .relateret_artikel_img, .relateret_artikel_overskrift{
-                    cursor: pointer;
-                }
+            .relateret_artikel_img,
+            .relateret_artikel_overskrift {
+                cursor: pointer;
             }
-        </style>
+        }
 
-        <article>
-            <div class="top_section">
-                <h1></h1>
-                <img class="cover_billede hexagon" src="" alt="">
-            </div>
-            <section class="main_section"></section>
+    </style>
 
-            <div class="relateret_artikler">
-                <h2>Læs også disse artikler</h2>
-                <div class="relateret_artikler_loop"></div>
-            </div>
-        </article>
+    <article>
+        <div class="top_section">
+            <h1></h1>
+            <img class="cover_billede hexagon" src="" alt="">
+        </div>
+        <section class="main_section"></section>
+
+        <div class="relateret_artikler">
+            <h2>Læs også disse artikler</h2>
+            <div class="relateret_artikler_loop"></div>
+        </div>
+    </article>
 
 
-        <template>
-                <div class="relateret_artikel">
-                    <img class="relateret_artikel_img hexagon" src="" alt="">
-                    <h3 class="relateret_artikel_overskrift"></h3>
-                    <p class="relateret_artikel_dato"></p>
-                </div>
-        </template>
+    <template>
+        <div class="relateret_artikel">
+            <img class="relateret_artikel_img hexagon" src="" alt="">
+            <h3 class="relateret_artikel_overskrift"></h3>
+            <p class="relateret_artikel_dato"></p>
+        </div>
+    </template>
 
-        <script>
-            let artikel;
-            let aktuelArtikel = "<?php echo get_the_ID() ?>";
+    <script>
+        let artikel;
+        let aktuelArtikel = "<?php echo get_the_ID() ?>";
 
-            document.addEventListener("DOMContentLoaded", loadJSON)
+        document.addEventListener("DOMContentLoaded", loadJSON)
 
-            async function loadJSON() {
-                console.log("loadJSON");
-                const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel/" + aktuelArtikel);
-                artikel = await JSONData.json();
-                console.log("artikel: ", artikel);
+        async function loadJSON() {
+            // async function gør så man kan bruge await
+            console.log("loadJSON");
+            const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel/" + aktuelArtikel);
+            //Henter data
+            artikel = await JSONData.json();
+            console.log("artikel: ", artikel);
 
-                const JSONData2 = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
-                artikler = await JSONData2.json();
+            const JSONData2 = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
+            //Henter data
+            artikler = await JSONData2.json();
 
-                console.log("artikler:", artikler);
-                visArtikel();
-            }
+            console.log("artikler:", artikler);
+            visArtikel();
+        }
 
-            function visArtikel() {
-                console.log("visArtikel");
-                document.querySelector(".cover_billede").src = artikel.cover_billede.guid;
-                document.querySelector("h1").textContent = artikel.title.rendered;
-                document.querySelector(".main_section").innerHTML = artikel.content.rendered;
-                visArtikler();
-            }
+        function visArtikel() {
+            //kalder functionen visArtikel
+            console.log("visArtikel");
+            document.querySelector(".cover_billede").src = artikel.cover_billede.guid;
+            //viser artikkel billed
+            document.querySelector("h1").textContent = artikel.title.rendered;
+            //viser overskrift
+            document.querySelector(".main_section").innerHTML = artikel.content.rendered;
+            //viser teskt inhold
+            visArtikler();
+        }
 
-            function visArtikler() {
+        function visArtikler() {
+            //kalder functionen visArtikler
             console.log("visArtikler");
 
             const dest = document.querySelector(".relateret_artikler_loop");
+            //viser artikler i loop
             const template = document.querySelector("template").content;
+            //viser templetes indhold
             dest.textContent = "";
             artikler.forEach(artiklen => {
-                    const klon = template.cloneNode(true);
-                    klon.querySelector(".relateret_artikel_img").src = artiklen.cover_billede.guid;
-                    klon.querySelector(".relateret_artikel_img").addEventListener("click", () => visDetaljer(artiklen))
-                    klon.querySelector(".relateret_artikel_overskrift").textContent = artiklen.title.rendered;
-                    klon.querySelector(".relateret_artikel_overskrift").addEventListener("click", () => visDetaljer(artiklen))
-                    klon.querySelector(".relateret_artikel_dato").textContent = artiklen.dato;
-                    dest.appendChild(klon);
-                })
-            }
+                //kalder funktion en gang for hvert element i array, i rækkefølge.
+                const klon = template.cloneNode(true);
+                klon.querySelector(".relateret_artikel_img").src = artiklen.cover_billede.guid;
+                klon.querySelector(".relateret_artikel_img").addEventListener("click", () => visDetaljer(artiklen))
+                klon.querySelector(".relateret_artikel_overskrift").textContent = artiklen.title.rendered;
+                klon.querySelector(".relateret_artikel_overskrift").addEventListener("click", () => visDetaljer(artiklen))
+                klon.querySelector(".relateret_artikel_dato").textContent = artiklen.dato;
+                dest.appendChild(klon);
+            })
+        }
 
-            function visDetaljer(artiklen) {
-                location.href = artiklen.link;
-            }
-        </script>
+        function visDetaljer(artiklen) {
+            location.href = artiklen.link;
+        }
 
-
-		<!-- VORES KODE SLUT I SKABELON -->
-
+    </script>
 
 
+    <!-- VORES KODE SLUT I SKABELON -->
 
 
-		<?php get_sidebar(); ?>
 
-		<?php do_action('blocksy:single:container:bottom'); ?>
-	</div>
+
+
+    <?php get_sidebar(); ?>
+
+    <?php do_action('blocksy:single:container:bottom'); ?>
+</div>
 
 <?php
 

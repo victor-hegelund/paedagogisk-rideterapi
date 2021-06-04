@@ -36,6 +36,11 @@ Author URI: https://victorhegelund.dk
     grid-template-columns: 1fr;
 }
 
+.three_columns {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 h3 {
     color: #87391E !important;
 }
@@ -124,6 +129,13 @@ footer {
         grid-column-gap: 50px;
         margin-bottom: 5vw;
     }
+
+    .three_columns {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 50px;
+        margin-bottom: 5vw;
+    }
+
 }
 
 /* Computer og op */
