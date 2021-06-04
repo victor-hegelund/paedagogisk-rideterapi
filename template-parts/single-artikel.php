@@ -125,7 +125,7 @@ $post_content = ob_get_clean();
         document.addEventListener("DOMContentLoaded", loadJSON)
 
         async function loadJSON() {
-            // async function gør så man kan bruge await
+            // async function mulighed for at udføre flere handlinger med flere threads
             console.log("loadJSON");
             const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel/" + aktuelArtikel);
             //Henter data
@@ -164,6 +164,7 @@ $post_content = ob_get_clean();
             artikler.forEach(artiklen => {
                 //kalder funktion en gang for hvert element i array, i rækkefølge.
                 const klon = template.cloneNode(true);
+                //En variable som kopiere template
                 klon.querySelector(".relateret_artikel_img").src = artiklen.cover_billede.guid;
                 klon.querySelector(".relateret_artikel_img").addEventListener("click", () => visDetaljer(artiklen))
                 klon.querySelector(".relateret_artikel_overskrift").textContent = artiklen.title.rendered;
@@ -174,7 +175,10 @@ $post_content = ob_get_clean();
         }
 
         function visDetaljer(artiklen) {
+            //kalder functionen
             location.href = artiklen.link;
+            //sender tilbage til artiken med url.
+
         }
 
     </script>

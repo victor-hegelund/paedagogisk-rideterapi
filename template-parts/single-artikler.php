@@ -102,7 +102,8 @@ $post_content = ob_get_clean();
 
     <article id="primary" class="content-area">
         <h1>Mine artikler</h1>
-        <p>Her finder du artikler, som jeg har skrevet. Jeg skriver om hvordan det går på min gård samt den nyeste viden indenfor rideterapi. God læselyst!</p>
+        <p>Her finder du artikler, som jeg har skrevet.</p>
+        <p>Jeg skriver om hvordan det går på min gård samt den nyeste viden indenfor rideterapi. God læselyst!</p>
         <div class="custom-select">
             <nav id="filtrering">
                 <button class="button valgt" data-kategori="alle">Alle</button>
@@ -123,15 +124,20 @@ $post_content = ob_get_clean();
 
     <script>
         let filter = "alle";
+        //Erklære variablen filter
         document.addEventListener("DOMContentLoaded", loadJSON)
+        // load indholdet af JSON-fil
 
         async function loadJSON() {
+            // async function mulighed for at udføre flere handlinger med flere threads
             console.log("loadJSON");
-            const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
+            const JSONData = await
+            fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
             const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
             artikler = await JSONData.json();
             console.log("Artikler", artikler);
             categories = await catJSONData.json();
+            // ?????????
             console.log("Categories", categories);
             opretKnapper();
         }
@@ -147,23 +153,34 @@ $post_content = ob_get_clean();
         }
 
         function filterKategori() {
+            //kalder functionen
             console.log("filterKategori");
             filter = this.dataset.kategori;
+            //henviser til det objekt, det tilhører
             document.querySelector(".valgt").classList.remove("valgt")
+            //fjerner classen
             this.classList.add("valgt");
+            //tilføjer classen
             visArtikler();
         }
 
         function visArtikler() {
+            //kalder functionen
             console.log("visArtikler");
             const dest = document.querySelector("#liste");
+            // henter id fra DOM
+
             const template = document.querySelector("template").content;
+            //henter indhold fra template
             dest.textContent = "";
             artikler.forEach(artikel => {
+                //kalder funktion en gang for hvert element i array, i rækkefølge.
                 console.log("artikel categories: " + artikel.artikel_kategori);
                 console.log(filter)
                 if (filter == "alle" || filter == artikel.artikel_kategori) {
+                    //filtering
                     const klon = template.cloneNode(true);
+                    //En variable som kopiere template
                     console.log("featured_image: " + artikel.cover_billede.guid);
                     klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
                     klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
@@ -177,7 +194,10 @@ $post_content = ob_get_clean();
         }
 
         function visDetaljer(artikel) {
+            //kalder functionen
             location.href = artikel.link;
+            //sender tilbage til artiken med url.
+
         }
 
     </script>

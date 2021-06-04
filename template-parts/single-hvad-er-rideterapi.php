@@ -54,120 +54,118 @@ the_content(
 $post_content = ob_get_clean();
 
 ?>
-	<!-- VORES KODE UDENFOR SKABELON -->
+<!-- VORES KODE UDENFOR SKABELON -->
 
-	<!-- VORES KODE SLUT UDENFOR SKABELON -->
-	<div
-		class="<?php echo trim($container_class) ?>"
-		<?php echo wp_kses_post(blocksy_sidebar_position_attr()); ?>
-		<?php echo $data_container_output; ?>
-		<?php echo blocksy_get_v_spacing() ?>>
+<!-- VORES KODE SLUT UDENFOR SKABELON -->
+<div class="<?php echo trim($container_class) ?>" <?php echo wp_kses_post(blocksy_sidebar_position_attr()); ?> <?php echo $data_container_output; ?> <?php echo blocksy_get_v_spacing() ?>>
 
-		<?php do_action('blocksy:single:container:top'); ?>
+    <?php do_action('blocksy:single:container:top'); ?>
 
-        <!-- VORES KODE I SKABELON -->
-        <style>
-            .hidden{
-                display: none;
-            }
+    <!-- VORES KODE I SKABELON -->
+    <style>
+        .hidden {
+            display: none;
+        }
 
-            .play_video{
-                cursor: pointer;
-            }
+        .play_video {
+            cursor: pointer;
+        }
 
-            .video{
-                padding: 50px;
-                position: fixed;
-                background-color: #fff;
-                z-index: 10001;
-                height: 100vh;
-                width: 100%;
-                top: 0;
-                left: 0;
-            }
+        .video {
+            padding: 50px;
+            position: fixed;
+            background-color: #fff;
+            z-index: 10001;
+            height: 100vh;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
 
-            .video video{
-                margin: 0 auto;
-                padding: 15vh;
-                height: 70vh;
-                position: absolute;
-                left: 0;
-                right: 0;
-                margin: auto;
-                cursor: pointer;
-            }
+        .video video {
+            margin: 0 auto;
+            padding: 15vh;
+            height: 70vh;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            cursor: pointer;
+        }
 
-            .video svg{
-                height: 30px;
-                width: 30px;
-                right: 50px;
-                cursor: pointer;
-                position: absolute;
-                z-index: 10002;
-            }
-        </style>
-        <div class="video hidden">
+        .video svg {
+            height: 30px;
+            width: 30px;
+            right: 50px;
+            cursor: pointer;
+            position: absolute;
+            z-index: 10002;
+        }
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="126.213" height="126.213" viewBox="0 0 126.213 126.213">
-                <g id="Group_115" data-name="Group 115" transform="translate(-168.893 -298.893)">
-                    <line id="Line_5" data-name="Line 5" x2="105" y2="105" transform="translate(179.5 309.5)" fill="none" stroke="#87391e" stroke-width="30"/>
-                    <line id="Line_6" data-name="Line 6" x1="105" y2="105" transform="translate(179.5 309.5)" fill="none" stroke="#87391e" stroke-width="30"/>
-                </g>
-            </svg>
+    </style>
+    <div class="video hidden">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="126.213" height="126.213" viewBox="0 0 126.213 126.213">
+            <g id="Group_115" data-name="Group 115" transform="translate(-168.893 -298.893)">
+                <line id="Line_5" data-name="Line 5" x2="105" y2="105" transform="translate(179.5 309.5)" fill="none" stroke="#87391e" stroke-width="30" />
+                <line id="Line_6" data-name="Line 6" x1="105" y2="105" transform="translate(179.5 309.5)" fill="none" stroke="#87391e" stroke-width="30" />
+            </g>
+        </svg>
 
 
-            <video class="mobil_video hidden" controls>
-                <source src="/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/mobil_interview.mp4" type="video/mp4">
-                Din telefon kan ikke afspille denne video.
-            </video>
+        <video class="mobil_video hidden" controls>
+            <source src="/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/mobil_interview.mp4" type="video/mp4">
+            Din telefon kan ikke afspille denne video.
+        </video>
 
-            <video class="desktop_video hidden" controls>
-                <source src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/desktop_interview.mp4" type="video/mp4">
-                Din computer kan ikke afspille denne video.
-            </video>
-        </div>
+        <video class="desktop_video hidden" controls>
+            <source src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/desktop_interview.mp4" type="video/mp4">
+            Din computer kan ikke afspille denne video.
+        </video>
+    </div>
 
-        <script>
+    <script>
+        document.addEventListener("DOMContentLoaded", start)
+        //inlæser dokumentet
 
-            document.addEventListener("DOMContentLoaded", start)
+        function start() {
+            //kalder functionen
+            document.querySelector(".play_video").addEventListener("click", () => screenSize())
+            //tilføjer pointer curser og click
+        }
 
-            function start(){
-                document.querySelector(".play_video").addEventListener("click", () => screenSize())
-            }
 
-
-            function screenSize(){
-                console.log("screenSize")
-                if (window.innerWidth < window.innerHeight) {
+        function screenSize() {
+            //kalder functionen
+            console.log("screenSize")
+            if (window.innerWidth < window.innerHeight) {
                 //Mobil
-                    document.querySelector(".mobil_video").classList.remove("hidden");
-                    playVideo()
-                }
-                else {
-                    //Computer
-                    document.querySelector(".desktop_video").classList.remove("hidden");
-                    playVideo()
-                }
+                document.querySelector(".mobil_video").classList.remove("hidden");
+                playVideo()
+            } else {
+                //Computer
+                document.querySelector(".desktop_video").classList.remove("hidden");
+                playVideo()
+
+                //fjerner classen hidden
             }
+        }
 
-            function playVideo(){
-                document.querySelector(".video").classList.remove("hidden");
-                document.querySelector(".video svg").addEventListener("click", () => lukVideo())
-            }
+        function playVideo() {
+            //kalder functionen
+            document.querySelector(".video").classList.remove("hidden");
+            //fjerner classen hidden
+            document.querySelector(".video svg").addEventListener("click", () => lukVideo())
+            //tilføjer click yil svg for at lukke siden
+        }
 
-            function lukVideo(){
-                document.querySelector(".video").classList.add("hidden");
-            }
+        function lukVideo() {
+            //kalder functionen
+            document.querySelector(".video").classList.add("hidden");
+            //tilføjer hidden classen igen.
+        }
 
-        </script>
-
-
-
-
-
-
-
-
+    </script>
 
 
 
@@ -178,12 +176,9 @@ $post_content = ob_get_clean();
 
 
 
+    <!-- VORES KODE SLUT I SKABELON -->
 
-
-
-		<!-- VORES KODE SLUT I SKABELON -->
-
-		<?php
+    <?php
 			/**
 			 * Note to code reviewers: This line doesn't need to be escaped.
 			 * Function blocksy_single_content() used here escapes the value properly.
@@ -191,127 +186,129 @@ $post_content = ob_get_clean();
 			echo blocksy_single_content($post_content);
 		?>
 
-        <!-- VORES KODE UNDER INDHOLD -->
-        <style>
-            .img svg {
+    <!-- VORES KODE UNDER INDHOLD -->
+    <style>
+        .img svg {}
 
+        .img img {
+
+            width: 100%;
+            height: 100%;
+        }
+
+        #filtrering button {
+            margin: 5px 30px;
+        }
+
+        .imgImg,
+        .overskrift {
+            cursor: pointer;
+        }
+
+        .overskrift {
+            margin-top: -20px;
+        }
+
+        .two_columns {
+            row-gap: 30px;
+        }
+
+        #liste {
+            display: flex;
+            gap: 20px;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+
+        .artikel {
+            min-width: 75%;
+        }
+
+        /* Tablet og op */
+        @media screen and (min-width: 689.98px) {
+            .artikel {
+                min-width: 300px;
             }
-            .img img {
 
-                width: 100%;
-                height: 100%;
-            }
-
-            #filtrering button{
-                margin: 5px 30px;
-            }
-
-            .imgImg, .overskrift{
+            .artikel .img,
+            .artikel .overskrift {
                 cursor: pointer;
             }
+        }
 
-            .overskrift{
-                margin-top: -20px;
-            }
+    </style>
 
-            .two_columns{
-                row-gap: 30px;
-            }
-
-            #liste{
-                display: flex;
-                gap: 20px;
-                overflow-x: scroll;
-                min-width: 100%;
-            }
-
-            .artikel{
-                min-width: 75%;
-            }
-
-            /* Tablet og op */
-            @media screen and (min-width: 689.98px) {
-                .artikel{
-                    min-width: 300px;
-                }
-                .artikel .img, .artikel .overskrift{
-                    cursor: pointer;
-                }
-            }
-
-        </style>
-
-        <article>
-          <section id="liste" class="two_columns"></section>
+    <article>
+        <section id="liste" class="two_columns"></section>
+    </article>
+    <template>
+        <article class="artikel">
+            <div class="img">
+                <img class="imgImg hexagon" src="" alt="">
+            </div>
+            <h2 class="overskrift"></h2>
+            <p class="dato"></p>
+            <a class="button">Læs mere</a>
         </article>
-        <template>
-            <article class="artikel">
-                <div class="img">
-                    <img class="imgImg hexagon" src="" alt="">
-                </div>
-                <h2 class="overskrift"></h2>
-                <p class="dato"></p>
-                <a class="button">Læs mere</a>
-            </article>
-        </template>
+    </template>
 
-        <script>
-            let filter = 4;
-            document.addEventListener("DOMContentLoaded", loadJSON)
+    <script>
+        let filter = 4;
+        document.addEventListener("DOMContentLoaded", loadJSON)
 
-            async function loadJSON() {
-                console.log("loadJSON");
-                const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
-                const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
-                artikler = await JSONData.json();
-                console.log("Artikler", artikler);
-                categories = await catJSONData.json();
-                console.log("Categories", categories);
-                visArtikler();
-            }
+        async function loadJSON() {
+            console.log("loadJSON");
+            const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
+            const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
+            artikler = await JSONData.json();
+            console.log("Artikler", artikler);
+            categories = await catJSONData.json();
+            console.log("Categories", categories);
+            visArtikler();
+        }
 
-            function filterKategori() {
-                console.log("filterKategori");
-                filter = this.dataset.kategori;
-                document.querySelector(".valgt").classList.remove("valgt")
-                this.classList.add("valgt");
-                visArtikler();
-            }
+        function filterKategori() {
+            console.log("filterKategori");
+            filter = this.dataset.kategori;
+            document.querySelector(".valgt").classList.remove("valgt")
+            this.classList.add("valgt");
+            visArtikler();
+        }
 
-            function visArtikler() {
-                console.log("visArtikler");
-                const dest = document.querySelector("#liste");
-                const template = document.querySelector("template").content;
-                dest.textContent = "";
-                artikler.forEach(artikel => {
-                    console.log("artikel categories: " + artikel.artikel_kategori);
-                    console.log(filter)
-                    if (filter == artikel.artikel_kategori){
-                        const klon = template.cloneNode(true);
-                        console.log("featured_image: " + artikel.cover_billede.guid);
-                        klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
-                        klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
-                        klon.querySelector(".overskrift").textContent = artikel.title.rendered;
-                        klon.querySelector(".overskrift").addEventListener("click", () => visDetaljer(artikel))
-                        klon.querySelector(".dato").textContent = artikel.dato;
-                        klon.querySelector(".button").addEventListener("click", () => visDetaljer(artikel))
-                        dest.appendChild(klon);
-                    }
-                })
-            }
+        function visArtikler() {
+            console.log("visArtikler");
+            const dest = document.querySelector("#liste");
+            const template = document.querySelector("template").content;
+            dest.textContent = "";
+            artikler.forEach(artikel => {
+                console.log("artikel categories: " + artikel.artikel_kategori);
+                console.log(filter)
+                if (filter == artikel.artikel_kategori) {
+                    const klon = template.cloneNode(true);
+                    console.log("featured_image: " + artikel.cover_billede.guid);
+                    klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
+                    klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
+                    klon.querySelector(".overskrift").textContent = artikel.title.rendered;
+                    klon.querySelector(".overskrift").addEventListener("click", () => visDetaljer(artikel))
+                    klon.querySelector(".dato").textContent = artikel.dato;
+                    klon.querySelector(".button").addEventListener("click", () => visDetaljer(artikel))
+                    dest.appendChild(klon);
+                }
+            })
+        }
 
-            function visDetaljer(artikel) {
-                location.href = artikel.link;
-            }
+        function visDetaljer(artikel) {
+            location.href = artikel.link;
+        }
 
-        </script>
+    </script>
 
-        <!-- VORES KODE UNDER INDHOLD SLUT -->
+    <!-- VORES KODE UNDER INDHOLD SLUT -->
 
-		<?php get_sidebar(); ?>
+    <?php get_sidebar(); ?>
 
-		<?php do_action('blocksy:single:container:bottom'); ?>
-	</div>
+    <?php do_action('blocksy:single:container:bottom'); ?>
+</div>
 
 <?php
 
