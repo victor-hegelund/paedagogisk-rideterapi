@@ -160,6 +160,27 @@ $post_content = ob_get_clean();
             }
 
         </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<!-- VORES KODE SLUT I SKABELON -->
 
 		<?php
@@ -170,7 +191,122 @@ $post_content = ob_get_clean();
 			echo blocksy_single_content($post_content);
 		?>
 
+        <!-- VORES KODE UNDER INDHOLD -->
+        <style>
+            .img svg {
 
+            }
+            .img img {
+
+                width: 100%;
+                height: 100%;
+            }
+
+            #filtrering button{
+                margin: 5px 30px;
+            }
+
+            .imgImg, .overskrift{
+                cursor: pointer;
+            }
+
+            .overskrift{
+                margin-top: -20px;
+            }
+
+            .two_columns{
+                row-gap: 30px;
+            }
+
+            #liste{
+                display: flex;
+                gap: 20px;
+                overflow-x: scroll;
+                min-width: 100%;
+            }
+
+            .artikel{
+                min-width: 75%;
+            }
+
+            /* Tablet og op */
+            @media screen and (min-width: 689.98px) {
+                .artikel{
+                    min-width: 300px;
+                }
+                .artikel .img, .artikel .overskrift{
+                    cursor: pointer;
+                }
+            }
+
+        </style>
+
+        <article>
+          <section id="liste" class="two_columns"></section>
+        </article>
+        <template>
+            <article class="artikel">
+                <div class="img">
+                    <img class="imgImg hexagon" src="" alt="">
+                </div>
+                <h2 class="overskrift"></h2>
+                <p class="dato"></p>
+                <a class="button">Læs mere</a>
+            </article>
+        </template>
+
+        <script>
+            let filter = 4;
+            document.addEventListener("DOMContentLoaded", loadJSON)
+
+            async function loadJSON() {
+                console.log("loadJSON");
+                const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
+                const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
+                artikler = await JSONData.json();
+                console.log("Artikler", artikler);
+                categories = await catJSONData.json();
+                console.log("Categories", categories);
+                visArtikler();
+            }
+
+            function filterKategori() {
+                console.log("filterKategori");
+                filter = this.dataset.kategori;
+                document.querySelector(".valgt").classList.remove("valgt")
+                this.classList.add("valgt");
+                visArtikler();
+            }
+
+            function visArtikler() {
+                console.log("visArtikler");
+                const dest = document.querySelector("#liste");
+                const template = document.querySelector("template").content;
+                dest.textContent = "";
+                artikler.forEach(artikel => {
+                    console.log("artikel categories: " + artikel.artikel_kategori);
+                    console.log(filter)
+                    if (filter == artikel.artikel_kategori){
+                        const klon = template.cloneNode(true);
+                        console.log("featured_image: " + artikel.cover_billede.guid);
+                        klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
+                        klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
+                        klon.querySelector(".overskrift").textContent = artikel.title.rendered;
+                        klon.querySelector(".overskrift").addEventListener("click", () => visDetaljer(artikel))
+                        klon.querySelector(".dato").textContent = artikel.dato;
+                        klon.querySelector(".button").addEventListener("click", () => visDetaljer(artikel))
+                        dest.appendChild(klon);
+                    }
+                })
+            }
+
+            function visDetaljer(artikel) {
+                location.href = artikel.link;
+            }
+
+        </script>
+
+        <!-- VORES KODE UNDER INDHOLD SLUT -->
 
 		<?php get_sidebar(); ?>
 

@@ -76,17 +76,37 @@ $post_content = ob_get_clean();
             }
 
             #filtrering button{
-                margin: 5px 30px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                margin-left: 0;
+                margin-right: 50px;
             }
 
             .imgImg, .overskrift{
                 cursor: pointer;
             }
 
+            .overskrift{
+                margin-top: -20px;
+            }
+
+            .two_columns{
+                row-gap: 30px;
+            }
+
+            .valgt{
+                background-color: #00464F !important;
+            }
+
+            .valgt:after {
+                background-color: #00464F !important;
+            }
+
         </style>
 
         <article id="primary" class="content-area">
-          <h1>Artikler</h1>
+          <h1>Mine artikler</h1>
+          <p>Her finder du artikler, som jeg har skrevet. Jeg skriver om hvordan det går på min gård samt den nyeste viden indenfor rideterapi. God læselyst!</p>
           <div class="custom-select">
             <nav id="filtrering">
                 <button class="button valgt" data-kategori="alle">Alle</button>

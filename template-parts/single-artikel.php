@@ -85,10 +85,14 @@ $post_content = ob_get_clean();
                 .top_section .cover_billede{
                     float: right;
                     width: 50%;
-                    margin-top: -87px ;
+                    margin-top: -18px ;
+                    margin-left: 30px;
                 }
                 .relateret_artikel{
                     min-width: 300px;
+                }
+                .relateret_artikel_img, .relateret_artikel_overskrift{
+                    cursor: pointer;
                 }
             }
         </style>
@@ -101,7 +105,7 @@ $post_content = ob_get_clean();
             <section class="main_section"></section>
 
             <div class="relateret_artikler">
-                <h2></h2>
+                <h2>Læs også disse artikler</h2>
                 <div class="relateret_artikler_loop"></div>
             </div>
         </article>
@@ -156,8 +160,12 @@ $post_content = ob_get_clean();
                     klon.querySelector(".relateret_artikel_overskrift").addEventListener("click", () => visDetaljer(artiklen))
                     klon.querySelector(".relateret_artikel_dato").textContent = artiklen.dato;
                     dest.appendChild(klon);
-            })
-        }
+                })
+            }
+
+            function visDetaljer(artiklen) {
+                location.href = artiklen.link;
+            }
         </script>
 
 

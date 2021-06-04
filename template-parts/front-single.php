@@ -96,7 +96,7 @@ $post_content = ob_get_clean();
 			}
 
 			[data-vertical-spacing*='bottom']{
-				padding: 0;
+				padding-bottom: 0 !important;
 			}
 
 			main#main.site-main.hfeed{
@@ -105,6 +105,15 @@ $post_content = ob_get_clean();
 
 			footer{
 				margin-top: 0;
+			}
+
+			.mobil_video_tekst .pil_ned{
+					display: block;
+				}
+
+
+			.anmeldelser_tekst{
+				font-weight: bold;
 			}
 
 			@media screen and (min-width: 689.98px) {
@@ -153,11 +162,26 @@ $post_content = ob_get_clean();
 					margin-right: auto;
 					bottom: 0px;
 					text-align: center;
+					padding-bottom: 30px;
+				}
+
+				.disktop_video_tekst h1{
+					margin-bottom: 10px;
+				}
+
+				.disktop_video_tekst p{
+					margin-bottom: 10px;
+				}
+
+				.disktop_video_tekst svg{
+					height: 15px;
+					margin-bottom: 10px;
+					display: block;
 				}
 
 				footer{
-				margin-top: -100px;
-			}
+					margin-top: -100px;
+				}
 			}
 		</style>
 
@@ -169,7 +193,12 @@ $post_content = ob_get_clean();
 			<div class="mobil_video_tekst">
 				<h1>Velkommen til</br>Pædagogisk Rideterapi</h1>
 				<p>hos Maria Knak</p>
-				<a href="#anmeldelser">Læs vores anmeldelser</a>
+				<a class="anmeldelser_tekst" href="#anmeldelser">Læs vores anmeldelser</a>
+				<a class="pil_ned" href="#anmeldelser">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30.637" height="14.364" viewBox="0 0 30.637 14.364">
+						<path id="Path_154" data-name="Path 154" d="M172.775,692.691l14.393,11.278,14.393-11.278" transform="translate(-171.85 -691.51)" fill="none" stroke="#84391e" stroke-width="3"/>
+					</svg>
+				</a>
 			</div>
 		</div>
 
@@ -184,7 +213,12 @@ $post_content = ob_get_clean();
 			<div class="disktop_video_tekst">
 				<h1>Velkommen til</br>Pædagogisk Rideterapi</h1>
 				<p>hos Maria Knak</p>
-				<a href="#anmeldelser">Læs vores anmeldelser</a>
+				<a class="anmeldelser_tekst" href="#anmeldelser">Læs vores anmeldelser</a>
+				<a href="#anmeldelser">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30.637" height="14.364" viewBox="0 0 30.637 14.364">
+						<path id="Path_154" data-name="Path 154" d="M172.775,692.691l14.393,11.278,14.393-11.278" transform="translate(-171.85 -691.51)" fill="none" stroke="#84391e" stroke-width="3"/>
+					</svg>
+				</a>
 			</div>
 		</div>
 
@@ -200,12 +234,12 @@ $post_content = ob_get_clean();
 
 		<!-- VORES KODE I SKABELON -->
 		<article>
-			<div class="velkommen two_columns">
+			<div id="velkommen" class="velkommen two_columns">
 				<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/IMG_0135-3.jpg" alt="">
 				<div class="velkommen_tekst">
-					<h2>Velkommen til min gård</h2>
-					<p>"Maria er utrolig rar og varm om hjertet, hun går til min datter i undervisningen, med et åbent sind og en stor respekt for min datters integritet. Maria er god til at aflæse min datter, og får hende til at føle sig tryg - samtidig med at hun at hun bliver udfordret. Jeg kan varmt anbefale Maria"</p>
-					<a class="button" href="/kea/10_eksamen/pædagogisk-rideterapi/hvem-er-jeg">Læs mere</a>
+					<h2>Pædagogisk ridning i Nakskov</h2>
+					<p>Pædagogisk ridning er et specielt tilrettelagt forløb i samvær med hesten. I pædagogisk ridning arbejdes der med klientens kropssprog, tillid, koncentration, opmærksomhed og relation til hesten gennem læring i omgang med hesten. I arbejdet med hesten handler det om at opbygge en tillid op til sig selv. Der lægges vægt på, at det hele foregår i trygge rammer og at der er ro omkring arbejdet og samværet med hesten. Det hele foregår på min gård i Nakskov, sammen med mig Maria Knak.</p>
+					<a class="button" href="/kea/10_eksamen/pædagogisk-rideterapi/hvad-er-rideterapi">Hør mig fortælle mere</a>
 				</div>
 			</div>
 		</article>
@@ -216,7 +250,7 @@ $post_content = ob_get_clean();
 				<h2>Mine anmeldelser</h2>
 
 				<div class="two_columns">
-					<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/Women.jpg" alt="Kvinde">
+					<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/anmeldelseEt.jpg" alt="Kvinde">
 					<div class="anmeldelse anmeldelseEt">
 						<h3>Anmeldelse fra Hanne Olsen</h3>
 						<p>"Maria er utrolig rar og varm om hjertet, hun går til min datter i undervisningen, med et åbent sind og en stor respekt for min datters integritet.</p>
@@ -227,7 +261,7 @@ $post_content = ob_get_clean();
 						<h3>Anmeldelse fra Marianne Carlsen</h3>
 						<p>"Maria Knak og hendes heste er fantastiske - de har gjort alverden for vores datter  da hun startede lå hendes selvtillid på et meget lille sted - hun var usikker på sin krop og ballance, men hun er kommet rigtig rigtig langt, og hun udvikler sig stadig for hver gang hun kommer. Vi kan kun give Pædagogisk Ridning vores klare anbefaling"</p>
 					</div>
-					<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/Women.jpg" alt="Kvinde">
+					<img class="hexagon" src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/anmeldelseTo.jpg" alt="Kvinde">
 				</div>
 			</div>
 		</section>
