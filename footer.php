@@ -31,6 +31,7 @@ do_action('blocksy:content:bottom');
 </html>
 
 <!-- VORES KODE -->
+
 <div class="mobil_bar">
 	<div class="mobil_nav">
 
@@ -96,4 +97,5 @@ function toggleMenu() {
 	document.querySelector(".mobil_menu").classList.toggle("hidden");
 }
 </script>
+
 <!-- VORES KODE SLUT -->
