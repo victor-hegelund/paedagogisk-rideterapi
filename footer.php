@@ -84,18 +84,18 @@ do_action('blocksy:content:bottom');
 
 
 <script>
-window.addEventListener("load", sidenVises);
+	window.addEventListener("load", sidenVises);
 
-function sidenVises() {
-	console.log("sidenVises");
-	document.querySelector(".mobil_menu_knap").addEventListener("click", toggleMenu);
-}
+	function sidenVises() {
+		console.log("sidenVises");
+		document.querySelector(".mobil_menu_knap").addEventListener("click", toggleMenu);
+	}
 
-//Viser eller skjuler mobil menu
-function toggleMenu() {
-	console.log("toggleMenu");
-	document.querySelector(".mobil_menu").classList.toggle("hidden");
-}
+	//Viser eller skjuler mobil menu
+	function toggleMenu() {
+		console.log("toggleMenu");
+		document.querySelector(".mobil_menu").classList.toggle("hidden");
+	}
 </script>
 
 <!-- VORES KODE SLUT -->
