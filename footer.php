@@ -35,8 +35,8 @@ do_action('blocksy:content:bottom');
 	<div class="mobil_nav">
 
 		<nav class="mobil_nav_nav">
-			<a class="mobil_menu_left" href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/jeg-tilbyder">Jeg tilbyder</a>
-			<a class="mobil_menu_right" href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/hvad-er-rideterapi">Rideterapi</a>
+			<a class="mobil_menu_left" href="/kea/10_eksamen/pædagogisk-rideterapi/jeg-tilbyder">Jeg tilbyder</a>
+			<a class="mobil_menu_right" href="/kea/10_eksamen/pædagogisk-rideterapi/hvad-er-rideterapi">Rideterapi</a>
 		</nav>
 
 		<div class="mobil_menu_knap">
@@ -75,11 +75,10 @@ do_action('blocksy:content:bottom');
 		</div>
 	</div>
 	<nav class="mobil_menu hidden">
-		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/hvem-er-jeg">Om mig</a>
-		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/artikler">Artikler</a>
-		<a href="https://victorhegelund.dk/kea/10_eksamen/pædagogisk-rideterapi/kontakt">Kontakt & booking</a>
+		<a href="/kea/10_eksamen/pædagogisk-rideterapi/hvem-er-jeg">Om mig</a>
+		<a href="/kea/10_eksamen/pædagogisk-rideterapi/artikler">Artikler</a>
+		<a href="/kea/10_eksamen/pædagogisk-rideterapi/kontakt">Kontakt & booking</a>
 	</nav>
-
 </div>
 
 
@@ -91,6 +90,7 @@ function sidenVises() {
 	document.querySelector(".mobil_menu_knap").addEventListener("click", toggleMenu);
 }
 
+//Viser eller skjuler mobil menu
 function toggleMenu() {
 	console.log("toggleMenu");
 	document.querySelector(".mobil_menu").classList.toggle("hidden");

@@ -191,7 +191,7 @@ $post_content = ob_get_clean();
 				<source src="https://victorhegelund.dk/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/front-mobil.mp4" type="video/mp4">
 			</video>
 			<div class="mobil_video_tekst">
-				<h1>Velkommen til</br>Pædagogisk Rideterapi</h1>
+				<h1>Velkommen til<br>Pædagogisk Rideterapi</h1>
 				<p>hos Maria Knak</p>
 				<a class="anmeldelser_tekst" href="#anmeldelser">Læs vores anmeldelser</a>
 				<a class="pil_ned" href="#anmeldelser">
@@ -211,7 +211,7 @@ $post_content = ob_get_clean();
 				<path id="Path_161" data-name="Path 161" d="M1127.64,474.36H47.22L0,298.42,306.3,0l702.94,188.47Z" fill="#eae5e1" opacity="0.9"/>
 			</svg>
 			<div class="disktop_video_tekst">
-				<h1>Velkommen til</br>Pædagogisk Rideterapi</h1>
+				<h1>Velkommen til<br>Pædagogisk Rideterapi</h1>
 				<p>hos Maria Knak</p>
 				<a class="anmeldelser_tekst" href="#anmeldelser">Læs vores anmeldelser</a>
 				<a href="#anmeldelser">

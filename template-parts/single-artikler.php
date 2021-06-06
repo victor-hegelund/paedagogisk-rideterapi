@@ -103,14 +103,15 @@ $post_content = ob_get_clean();
     <article id="primary" class="content-area">
         <h1>Mine artikler</h1>
         <p>Her finder du artikler, som jeg har skrevet.</p>
-        <p>Jeg skriver om hvordan det går på min gård samt den nyeste viden indenfor rideterapi. God læselyst!</p>
+        <p>Jeg skriver om, hvordan det går på min gård samt den nyeste viden indenfor rideterapi. God læselyst!</p>
         <div class="custom-select">
             <nav id="filtrering">
                 <button class="button valgt" data-kategori="alle">Alle</button>
             </nav>
         </div>
         <section id="liste" class="three_columns"></section>
-    </article><!-- #primary -->
+    </article>
+
     <template>
         <article>
             <div class="img">
@@ -123,27 +124,32 @@ $post_content = ob_get_clean();
     </template>
 
     <script>
+        //Lav global variabel
         let filter = "alle";
-        //Erklære variablen filter
-        document.addEventListener("DOMContentLoaded", loadJSON)
-        // load indholdet af JSON-fil
 
+        document.addEventListener("DOMContentLoaded", loadJSON)
+
+        //Load JSON data fra WP REST API
         async function loadJSON() {
-            // async function mulighed for at udføre flere handlinger med flere threads
             console.log("loadJSON");
+
+            //Hent artikler
             const JSONData = await
             fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
-            const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
             artikler = await JSONData.json();
             console.log("Artikler", artikler);
+
+            //Hent kategorier
+            const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
             categories = await catJSONData.json();
-            // ?????????
             console.log("Categories", categories);
+
             opretKnapper();
         }
 
         function opretKnapper() {
             console.log("opretKnapper");
+            //Lav knapper fra kategorier
             categories.forEach(cat => {
                 document.querySelector("#filtrering").innerHTML += `<button class="button" data-kategori="${cat.id}">${cat.name}</button>`
             })
@@ -152,35 +158,28 @@ $post_content = ob_get_clean();
             visArtikler();
         }
 
+        //Tilføjre class til den knap, der er trykket på
         function filterKategori() {
-            //kalder functionen
             console.log("filterKategori");
             filter = this.dataset.kategori;
-            //henviser til det objekt, det tilhører
             document.querySelector(".valgt").classList.remove("valgt")
-            //fjerner classen
             this.classList.add("valgt");
-            //tilføjer classen
             visArtikler();
         }
 
         function visArtikler() {
-            //kalder functionen
             console.log("visArtikler");
             const dest = document.querySelector("#liste");
-            // henter id fra DOM
 
+            //Henvis til indhold fra template
             const template = document.querySelector("template").content;
-            //henter indhold fra template
+
             dest.textContent = "";
+
+            //Kører funktionen én gang for hver artikel som opfylder if sætningen
             artikler.forEach(artikel => {
-                //kalder funktion en gang for hvert element i array, i rækkefølge.
-                console.log("artikel categories: " + artikel.artikel_kategori);
-                console.log(filter)
                 if (filter == "alle" || filter == artikel.artikel_kategori) {
-                    //filtering
                     const klon = template.cloneNode(true);
-                    //En variable som kopiere template
                     console.log("featured_image: " + artikel.cover_billede.guid);
                     klon.querySelector(".imgImg").src = artikel.cover_billede.guid;
                     klon.querySelector(".imgImg").addEventListener("click", () => visDetaljer(artikel))
@@ -193,11 +192,9 @@ $post_content = ob_get_clean();
             })
         }
 
+        //Linker til den enkelte artikel
         function visDetaljer(artikel) {
-            //kalder functionen
             location.href = artikel.link;
-            //sender tilbage til artiken med url.
-
         }
 
     </script>

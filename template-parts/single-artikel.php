@@ -119,52 +119,52 @@ $post_content = ob_get_clean();
     </template>
 
     <script>
+        //Lav globale variabel
         let artikel;
         let aktuelArtikel = "<?php echo get_the_ID() ?>";
 
         document.addEventListener("DOMContentLoaded", loadJSON)
 
+        //Load JSON data fra WP REST API
         async function loadJSON() {
-            // async function mulighed for at udføre flere handlinger med flere threads
             console.log("loadJSON");
+
+            //Hent artikelen
             const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel/" + aktuelArtikel);
-            //Henter data
             artikel = await JSONData.json();
             console.log("artikel: ", artikel);
 
+            //Hent alle artikler
             const JSONData2 = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
-            //Henter data
             artikler = await JSONData2.json();
-
             console.log("artikler:", artikler);
+
             visArtikel();
         }
 
+        //Vis den aktuele artikel
         function visArtikel() {
-            //kalder functionen visArtikel
             console.log("visArtikel");
             document.querySelector(".cover_billede").src = artikel.cover_billede.guid;
-            //viser artikkel billed
             document.querySelector("h1").textContent = artikel.title.rendered;
-            //viser overskrift
             document.querySelector(".main_section").innerHTML = artikel.content.rendered;
-            //viser teskt inhold
             visArtikler();
         }
 
+        //Vis alle artikler
         function visArtikler() {
-            //kalder functionen visArtikler
             console.log("visArtikler");
 
             const dest = document.querySelector(".relateret_artikler_loop");
-            //viser artikler i loop
+
+            //Henvis til indhold fra template
             const template = document.querySelector("template").content;
-            //viser templetes indhold
+
             dest.textContent = "";
+
+            //Kører funktionen én gang for hver enkel artikel
             artikler.forEach(artiklen => {
-                //kalder funktion en gang for hvert element i array, i rækkefølge.
                 const klon = template.cloneNode(true);
-                //En variable som kopiere template
                 klon.querySelector(".relateret_artikel_img").src = artiklen.cover_billede.guid;
                 klon.querySelector(".relateret_artikel_img").addEventListener("click", () => visDetaljer(artiklen))
                 klon.querySelector(".relateret_artikel_overskrift").textContent = artiklen.title.rendered;
@@ -174,11 +174,9 @@ $post_content = ob_get_clean();
             })
         }
 
+        //Linker til den enkelte artikel
         function visDetaljer(artiklen) {
-            //kalder functionen
             location.href = artiklen.link;
-            //sender tilbage til artiken med url.
-
         }
 
     </script>

@@ -253,33 +253,39 @@ $post_content = ob_get_clean();
     </template>
 
     <script>
+
+        //Lav global variabel
         let filter = 4;
+
         document.addEventListener("DOMContentLoaded", loadJSON)
 
+        //Load JSON data fra WP REST API
         async function loadJSON() {
             console.log("loadJSON");
+
+            //Hent artikler
             const JSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel?per_page=100");
-            const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
             artikler = await JSONData.json();
             console.log("Artikler", artikler);
+
+            //Hent kategorier
+            const catJSONData = await fetch("/kea/10_eksamen/pædagogisk-rideterapi/wp-json/wp/v2/artikel_kategori");
             categories = await catJSONData.json();
             console.log("Categories", categories);
-            visArtikler();
-        }
 
-        function filterKategori() {
-            console.log("filterKategori");
-            filter = this.dataset.kategori;
-            document.querySelector(".valgt").classList.remove("valgt")
-            this.classList.add("valgt");
             visArtikler();
         }
 
         function visArtikler() {
             console.log("visArtikler");
             const dest = document.querySelector("#liste");
+
+            //Henvis til indhold fra template
             const template = document.querySelector("template").content;
+
             dest.textContent = "";
+
+            //Kører funktionen én gang for hver artikel som opfylder if sætningen (kategori = "Viden")
             artikler.forEach(artikel => {
                 console.log("artikel categories: " + artikel.artikel_kategori);
                 console.log(filter)
@@ -297,6 +303,7 @@ $post_content = ob_get_clean();
             })
         }
 
+        //Linker til den enkelte artikel
         function visDetaljer(artikel) {
             location.href = artikel.link;
         }

@@ -7,7 +7,6 @@ Author: Victor Hegelund
 Author URI: https://victorhegelund.dk
 */
 
-/* UX */
 .button:after {
     content: "";
     background-color: #9E4C30;
@@ -112,7 +111,7 @@ footer {
     padding-bottom: 30px;
 }
 
-/*samme afstand på alle sider*/
+/* Margen - Kopieret fra Blocksy (main theme)*/
 .skabelon {
     --has-background: var(--has-boxed);
     --has-boxed-structure: var(--has-boxed);
