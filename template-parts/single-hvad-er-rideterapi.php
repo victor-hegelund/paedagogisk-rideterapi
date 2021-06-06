@@ -62,6 +62,7 @@ $post_content = ob_get_clean();
     <?php do_action('blocksy:single:container:top'); ?>
 
     <!-- VORES KODE I SKABELON -->
+
     <style>
         .hidden {
             display: none;
@@ -101,8 +102,8 @@ $post_content = ob_get_clean();
             position: absolute;
             z-index: 10002;
         }
-
     </style>
+
     <div class="video hidden">
 
         <svg xmlns="http://www.w3.org/2000/svg" width="126.213" height="126.213" viewBox="0 0 126.213 126.213">
@@ -111,7 +112,6 @@ $post_content = ob_get_clean();
                 <line id="Line_6" data-name="Line 6" x1="105" y2="105" transform="translate(179.5 309.5)" fill="none" stroke="#87391e" stroke-width="30" />
             </g>
         </svg>
-
 
         <video class="mobil_video hidden" controls>
             <source src="/kea/10_eksamen/p%C3%A6dagogisk-rideterapi/wp-content/uploads/mobil_interview.mp4" type="video/mp4">
