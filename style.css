@@ -143,7 +143,7 @@ footer {
 /* Computer og op */
 @media screen and (min-width: 1000px) {
     .mobil_bar {
-        display: none !important;
+        display: none;
     }
 
     footer {
