@@ -125,18 +125,17 @@ $post_content = ob_get_clean();
     </div>
 
     <script>
+
         document.addEventListener("DOMContentLoaded", start)
-        //inlæser dokumentet
 
         function start() {
-            //kalder functionen
+            console.log("start")
             document.querySelector(".play_video").addEventListener("click", () => screenSize())
-            //tilføjer pointer curser og click
         }
 
 
+        //Tjek om browseren er høj- eller bredformat
         function screenSize() {
-            //kalder functionen
             console.log("screenSize")
             if (window.innerWidth < window.innerHeight) {
                 //Mobil
@@ -146,35 +145,23 @@ $post_content = ob_get_clean();
                 //Computer
                 document.querySelector(".desktop_video").classList.remove("hidden");
                 playVideo()
-
-                //fjerner classen hidden
             }
         }
 
+        //Vis video
         function playVideo() {
-            //kalder functionen
+            console.log("playVideo")
             document.querySelector(".video").classList.remove("hidden");
-            //fjerner classen hidden
             document.querySelector(".video svg").addEventListener("click", () => lukVideo())
-            //tilføjer click yil svg for at lukke siden
         }
 
+        //Skjul video
         function lukVideo() {
-            //kalder functionen
+            console.log("lukVideo")
             document.querySelector(".video").classList.add("hidden");
-            //tilføjer hidden classen igen.
         }
 
     </script>
-
-
-
-
-
-
-
-
-
 
     <!-- VORES KODE SLUT I SKABELON -->
 

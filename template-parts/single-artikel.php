@@ -93,7 +93,6 @@ $post_content = ob_get_clean();
                 cursor: pointer;
             }
         }
-
     </style>
 
     <article>
@@ -108,7 +107,6 @@ $post_content = ob_get_clean();
             <div class="relateret_artikler_loop"></div>
         </div>
     </article>
-
 
     <template>
         <div class="relateret_artikel">
@@ -181,12 +179,7 @@ $post_content = ob_get_clean();
 
     </script>
 
-
     <!-- VORES KODE SLUT I SKABELON -->
-
-
-
-
 
     <?php get_sidebar(); ?>
 

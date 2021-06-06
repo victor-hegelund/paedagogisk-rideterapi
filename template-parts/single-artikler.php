@@ -62,7 +62,6 @@ $post_content = ob_get_clean();
     <?php do_action('blocksy:single:container:top'); ?>
 
     <!-- VORES KODE I SKABELON -->
-
     <style>
         .img img {
             width: 100%;
