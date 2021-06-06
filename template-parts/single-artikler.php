@@ -88,7 +88,6 @@ $post_content = ob_get_clean();
         .valgt:after {
             background-color: #00464F !important;
         }
-
     </style>
 
     <article id="primary" class="content-area">
