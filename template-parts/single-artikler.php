@@ -62,19 +62,14 @@ $post_content = ob_get_clean();
     <?php do_action('blocksy:single:container:top'); ?>
 
     <!-- VORES KODE I SKABELON -->
+
     <style>
-        .img svg {}
-
         .img img {
-
             width: 100%;
         }
 
         #filtrering button {
-            margin-top: 5px;
-            margin-bottom: 5px;
-            margin-left: 0;
-            margin-right: 50px;
+            margin: 5px 50px 5px 0;
         }
 
         .imgImg,
@@ -84,10 +79,6 @@ $post_content = ob_get_clean();
 
         .overskrift {
             margin-top: -20px;
-        }
-
-        .three_columns {
-            row-gap: 30px;
         }
 
         .valgt {

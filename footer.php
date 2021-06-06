@@ -76,7 +76,7 @@ do_action('blocksy:content:bottom');
 		</div>
 	</div>
 	<nav class="mobil_menu hidden">
-		<a href="/kea/10_eksamen/pædagogisk-rideterapi/hvem-er-jeg">Om mig</a>
+		<a href="/kea/10_eksamen/pædagogisk-rideterapi/om-mig">Om mig</a>
 		<a href="/kea/10_eksamen/pædagogisk-rideterapi/artikler">Artikler</a>
 		<a href="/kea/10_eksamen/pædagogisk-rideterapi/kontakt">Kontakt & booking</a>
 	</nav>

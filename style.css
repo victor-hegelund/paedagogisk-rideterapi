@@ -153,6 +153,7 @@ footer {
     .three_columns {
         grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: 50px;
+        row-gap: 30px;
         margin-bottom: 5vw;
     }
 }
