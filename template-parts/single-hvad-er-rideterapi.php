@@ -175,10 +175,7 @@ $post_content = ob_get_clean();
 
     <!-- VORES KODE UNDER INDHOLD -->
     <style>
-        .img svg {}
-
         .img img {
-
             width: 100%;
             height: 100%;
         }
@@ -196,19 +193,15 @@ $post_content = ob_get_clean();
             margin-top: -20px;
         }
 
-        .two_columns {
-            row-gap: 30px;
-        }
-
         #liste {
             display: flex;
-            gap: 20px;
             overflow-x: scroll;
             min-width: 100%;
         }
 
         .artikel {
             min-width: 75%;
+            margin-right: 40px;
         }
 
         /* Tablet og op */
@@ -226,14 +219,14 @@ $post_content = ob_get_clean();
     </style>
 
     <article>
-        <section id="liste" class="two_columns"></section>
+        <section id="liste"></section>
     </article>
     <template>
         <article class="artikel">
             <div class="img">
                 <img class="imgImg hexagon" src="" alt="">
             </div>
-            <h2 class="overskrift"></h2>
+            <h3 class="overskrift"></h3>
             <p class="dato"></p>
             <a class="button">Læs mere</a>
         </article>

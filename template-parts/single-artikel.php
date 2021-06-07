@@ -64,15 +64,16 @@ $post_content = ob_get_clean();
     <!-- VORES KODE I SKABELON -->
 
     <style>
+
         .relateret_artikler_loop {
             display: flex;
-            gap: 20px;
             overflow-x: scroll;
             min-width: 100%;
         }
 
         .relateret_artikel {
             min-width: 75%;
+            margin-right: 40px;
         }
 
         /* Tablet og op */
